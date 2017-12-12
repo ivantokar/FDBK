@@ -39,14 +39,12 @@ router.post('/', (request, response) => {
 					email: request.body.email,
 					message: request.body.message,
 				});
-			}).catch(err => {
-				console.error(err);
 			});
 		}
 
 		response.status(200).json({ success: true, message: 'Thank you for contacting us. We will get back to you soon!' });
 	} else {
-		response.status(202).json(errors);
+		response.status(403).json(errors);
 	}
 });
 

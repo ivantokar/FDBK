@@ -49,18 +49,18 @@ class Contact extends React.Component {
 		return isValid;
 	}
 
-	onChange(event) {
+	change = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
-	}
+	};
 
-	submit(event) {
+	submit = (event) => {
 		event.preventDefault();
 
 		if (this.isValid()) {
 			this.setState({ success: false, errors: {}, isLoading: true });
 			this.props.sendMessage(this.state);
 		}
-	}
+	};
 
 	closeAlert() {
 		setTimeout(() => {
@@ -82,16 +82,16 @@ class Contact extends React.Component {
 
 							{ success && <div className="alert alert-success">{ sent }</div> }
 
-							<form onSubmit={this.submit.bind(this)}>
+							<form onSubmit={this.submit}>
 								<div className="form-group">
 									<label htmlFor="email">Email address</label>
-									<input type="text" name="email" className="form-control" id="email" placeholder="Enter email" ref="email" onChange={this.onChange.bind(this)}/>
+									<input type="text" name="email" className="form-control" id="email" placeholder="Enter email" ref="email" onChange={this.change}/>
 									{ errors.email && <div className="invalid-feedback">{ errors.email }</div> }
 								</div>
 
 								<div className="form-group">
 									<label htmlFor="message">Message</label>
-									<textarea className="form-control" name="message" id="message" placeholder="Enter Message" rows="3" ref="message" onChange={this.onChange.bind(this)} />
+									<textarea className="form-control" name="message" id="message" placeholder="Enter Message" rows="3" ref="message" onChange={this.change} />
 									{ errors.message && <div className="invalid-feedback show">{ errors.message }</div> }
 								</div>
 
